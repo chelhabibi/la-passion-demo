@@ -63,7 +63,6 @@ export default function Navbar() {
     { href: `/${locale}`, label: t("home"), icon: NavIcons.home },
     { href: `/${locale}/menu`, label: t("menu"), icon: NavIcons.menu },
     { href: `/${locale}/about`, label: t("about"), icon: NavIcons.about },
-    { href: `/${locale}/reservation`, label: t("reservation"), icon: NavIcons.reservation },
     { href: `/${locale}#contact`, label: t("contact"), icon: NavIcons.contact },
   ];
 
