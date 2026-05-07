@@ -341,11 +341,10 @@ export default function MenuSection({ preview = false }: { preview?: boolean }) 
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://backend-production-dc32.up.railway.app";
   const seasonLabel = getSeasonMenuLabel(locale);
 
   useEffect(() => {
-    fetch(`${apiUrl}/menu`)
+    fetch(`/api/menu`)
       .then((r) => r.json())
       .then((data) => { setItems(data); setLoading(false); })
       .catch(() => setLoading(false));
