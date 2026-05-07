@@ -5,7 +5,6 @@ import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import InfiniteMenuScroll from "./InfiniteMenuScroll";
 import { getSeasonMenuLabel, getCurrentSeason } from "@/lib/season";
 
 interface MenuItem {
@@ -432,9 +431,8 @@ export default function MenuSection({ preview = false, initialItems }: { preview
                           <p className="section-label">À La Carte</p>
                           <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
                         </div>
-                        {/* Infinite horizontal scroll */}
-                        <div className="mb-16">
-                          <InfiniteMenuScroll items={regular} locale={locale} />
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                          {regular.map(item => <MenuCard key={item.id} item={item} locale={locale} />)}
                         </div>
                         {drinks.length > 0 && (
                           <>
