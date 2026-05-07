@@ -337,19 +337,20 @@ export default function MenuSection({ preview = false, initialItems }: { preview
   const locale = useLocale();
   const [items, setItems] = useState<MenuItem[]>(initialItems ?? []);
   const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [loading, setLoading] = useState(!initialItems);
+  const [loading, setLoading] = useState(!initialItems || initialItems.length === 0);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
   const seasonLabel = getSeasonMenuLabel(locale);
 
   useEffect(() => {
-    if (initialItems) return;
+    if (initialItems && initialItems.length > 0) return;
     fetch(`/api/menu`)
       .then((r) => r.json())
       .then((data) => { setItems(data); setLoading(false); })
       .catch(() => setLoading(false));
-  }, [initialItems]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const filtered = activeCategory === "all" ? items : items.filter((i) => i.category === activeCategory);
   const displayed = preview ? filtered.slice(0, 6) : filtered;
