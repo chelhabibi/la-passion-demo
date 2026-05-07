@@ -332,6 +332,8 @@ function SkeletonCard() {
   );
 }
 
+const BACKEND = process.env.NEXT_PUBLIC_API_URL || "https://backend-production-dc32.up.railway.app";
+
 export default function MenuSection({ preview = false, initialItems }: { preview?: boolean; initialItems?: MenuItem[] }) {
   const t = useTranslations("menu");
   const locale = useLocale();
@@ -345,7 +347,7 @@ export default function MenuSection({ preview = false, initialItems }: { preview
 
   useEffect(() => {
     if (initialItems && initialItems.length > 0) return;
-    fetch(`/api/menu`)
+    fetch(`${BACKEND}/menu`)
       .then((r) => r.json())
       .then((data) => { setItems(data); setLoading(false); })
       .catch(() => setLoading(false));
