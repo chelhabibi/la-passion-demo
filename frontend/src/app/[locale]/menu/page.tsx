@@ -2,11 +2,24 @@ import Navbar from "@/components/Navbar";
 import MenuSection from "@/components/MenuSection";
 import Contact from "@/components/Contact";
 
-export default function MenuPage() {
+const API = process.env.NEXT_PUBLIC_API_URL || "https://backend-production-dc32.up.railway.app";
+
+async function getMenuItems() {
+  try {
+    const res = await fetch(`${API}/menu`, { cache: "no-store" });
+    if (!res.ok) return [];
+    return res.json();
+  } catch {
+    return [];
+  }
+}
+
+export default async function MenuPage() {
+  const menuItems = await getMenuItems();
+
   return (
     <main className="bg-black">
       <Navbar />
-      {/* Page header */}
       <div className="relative h-64 flex items-end pb-12 px-6 overflow-hidden bg-navy-deep">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -22,7 +35,7 @@ export default function MenuPage() {
         </div>
       </div>
 
-      <MenuSection />
+      <MenuSection initialItems={menuItems} />
       <Contact />
     </main>
   );

@@ -7,14 +7,28 @@ import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
 import Link from "next/link";
 
-export default function HomePage() {
+const API = process.env.NEXT_PUBLIC_API_URL || "https://backend-production-dc32.up.railway.app";
+
+async function getMenuItems() {
+  try {
+    const res = await fetch(`${API}/menu`, { cache: "no-store" });
+    if (!res.ok) return [];
+    return res.json();
+  } catch {
+    return [];
+  }
+}
+
+export default async function HomePage() {
+  const menuItems = await getMenuItems();
+
   return (
     <main className="bg-black">
       <Navbar />
       <Hero />
       <About />
       <Chef />
-      <MenuSection preview />
+      <MenuSection preview initialItems={menuItems} />
 
       {/* Reservation CTA banner */}
       <section className="relative bg-navy py-32 px-6 overflow-hidden">
