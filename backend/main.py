@@ -14,10 +14,11 @@ except Exception as e:
 
 app = FastAPI(title="La Passion API", version="1.0.0")
 
+origins = settings.allowed_origins.split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.allowed_origins.split(","),
-    allow_credentials=True,
+    allow_origins=origins,
+    allow_credentials="*" not in origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
