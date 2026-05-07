@@ -341,7 +341,7 @@ export default function MenuSection({ preview = false }: { preview?: boolean }) 
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://backend-production-dc32.up.railway.app";
   const seasonLabel = getSeasonMenuLabel(locale);
 
   useEffect(() => {
