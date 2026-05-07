@@ -14,6 +14,15 @@ except Exception as e:
 
 app = FastAPI(title="La Passion API", version="1.0.0")
 
+
+@app.on_event("startup")
+async def auto_seed():
+    try:
+        from seed import seed
+        seed()
+    except Exception as e:
+        print(f"Seed warning: {e}")
+
 origins = settings.allowed_origins.split(",")
 app.add_middleware(
     CORSMiddleware,
