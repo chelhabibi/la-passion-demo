@@ -29,6 +29,7 @@ const SPECIAL_OPTIONS = [
 ];
 
 function SuccessToast({ message, onClose }: { message: string; onClose: () => void }) {
+  const t = useTranslations("reservation");
   return (
     <motion.div
       initial={{ opacity: 0, x: 100, y: 20 }}
@@ -43,7 +44,7 @@ function SuccessToast({ message, onClose }: { message: string; onClose: () => vo
       </div>
       <div>
         <p className="text-white font-serif text-lg font-light">
-          {useTranslations("reservation")("success.title")}
+          {t("success.title")}
         </p>
         <p className="text-white/50 text-xs mt-1">{message}</p>
       </div>
@@ -67,7 +68,7 @@ export default function ReservationForm() {
     );
   };
 
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://backend-production-dc32.up.railway.app";
 
   const {
     register,
