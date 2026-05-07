@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "reservation": "Reserve",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline": "The Art of Dining",
+    "subtitle": "Where French culinary mastery meets Vietnamese soul, in the heart of Hanoi's Old Quarter",
+    "cta_reserve": "Reserve a Table",
+    "cta_menu": "View Menu",
+    "scroll": "Explore"
+  },
+  "about": {
+    "section_label": "Our Story",
+    "title": "A Love Story Cooked From Two Worlds",
+    "body1": "La Passion was born from Chef Minh Tú's journey — years of apprenticeship in Parisian kitchens, returning to Hanoi carrying classical French technique and a purely Vietnamese heart.",
+    "body2": "Nestled at 24 Hàng Bè in an 80-year-old colonial house, La Passion is more than a restaurant — it is a dialogue between two cultures, told through each plate we serve.",
+    "philosophy_label": "Philosophy",
+    "philosophy": "We believe the finest cuisine begins with absolute respect for local ingredients. Each season, our menu changes to reflect the very best from Dalat highlands, Sa Pa mountains, and the Central Coast.",
+    "ingredient_label": "Ingredients",
+    "ingredient": "Moc Chau wild mushrooms. Dalat scallops. Wagyu from partner farms. Herbs harvested each morning from our private garden.",
+    "stat1_number": "2015",
+    "stat1_label": "Founded",
+    "stat2_number": "12",
+    "stat2_label": "Tables",
+    "stat3_number": "4",
+    "stat3_label": "Seasonal Menus / Year"
+  },
+  "menu": {
+    "section_label": "This Season's Menu",
+    "title": "Seasonal Menu",
+    "subtitle": "Each dish crafted from the finest ingredients the season offers",
+    "categories": {
+      "all": "All",
+      "starter": "Starters",
+      "main": "Mains",
+      "dessert": "Desserts",
+      "drink": "Drinks"
+    },
+    "available": "Available",
+    "unavailable": "Unavailable"
+  },
+  "reservation": {
+    "section_label": "Reservations",
+    "title": "An Evening to Remember",
+    "subtitle": "Allow us to prepare a perfect experience for you",
+    "form": {
+      "name": "Full Name",
+      "name_placeholder": "John Smith",
+      "email": "Email",
+      "email_placeholder": "your@email.com",
+      "phone": "Phone Number",
+      "phone_placeholder": "+84 9xx xxx xxx",
+      "date": "Date",
+      "time": "Time",
+      "guests": "Number of Guests",
+      "guests_placeholder": "2",
+      "notes": "Special Notes",
+      "notes_placeholder": "Food allergies, special requests, special occasions...",
+      "submit": "Confirm Reservation",
+      "submitting": "Processing..."
+    },
+    "success": {
+      "title": "Reservation Confirmed!",
+      "message": "We will contact you to confirm within 2 hours."
+    },
+    "errors": {
+      "name_required": "Please enter your name",
+      "email_invalid": "Invalid email address",
+      "phone_required": "Please enter your phone number",
+      "date_required": "Please select a date",
+      "time_required": "Please select a time",
+      "guests_required": "Please enter number of guests",
+      "submit_failed": "Something went wrong. Please try again."
+    }
+  },
+  "contact": {
+    "section_label": "Contact",
+    "title": "Find Us",
+    "address": "24 Hàng Bè, Hoàn Kiếm, Hanoi",
+    "phone": "+84 24 3826 1234",
+    "email": "hello@lapassion.vn",
+    "hours_title": "Opening Hours",
+    "hours": "Tuesday – Sunday",
+    "lunch": "11:30 – 14:30",
+    "dinner": "18:00 – 22:30",
+    "closed": "Closed on Mondays"
+  },
+  "footer": {
+    "tagline": "The art of fine dining in Hanoi's Old Quarter",
+    "rights": "© 2024 La Passion. All rights reserved."
+  }
+}

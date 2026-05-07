@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white font-sans antialiased;
+    cursor: default;
+  }
+
+  ::selection {
+    @apply bg-burgundy/40 text-white;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-navy-deep;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gold-rich/50 rounded-full;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-gold tracking-ultra uppercase text-xs font-sans font-light;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-light text-white leading-tight;
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center gap-3 px-8 py-4
+           bg-transparent border border-gold/60 text-gold tracking-widest text-xs uppercase font-sans
+           transition-all duration-500
+           hover:bg-burgundy hover:border-burgundy hover:text-white hover:scale-105 hover:shadow-[0_0_30px_rgba(139,26,47,0.4)]
+           focus:outline-none focus:ring-2 focus:ring-burgundy/50;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-white/60 tracking-widest text-xs uppercase font-sans
+           transition-all duration-300 hover:text-gold hover:gap-4;
+  }
+
+  .input-field {
+    @apply w-full bg-transparent border-b border-white/20 py-3 px-0
+           text-white placeholder-white/30 text-sm font-light tracking-wide
+           focus:outline-none focus:border-gold/60 transition-colors duration-300;
+  }
+
+  .menu-card {
+    @apply relative overflow-hidden group cursor-default;
+  }
+
+  .nav-link {
+    @apply text-white/60 tracking-widest text-xs uppercase font-sans
+           transition-colors duration-300 hover:text-gold;
+  }
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #c9a84c, #e8d5a3, #c9a84c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-overlay-dark {
+    background: linear-gradient(to bottom, rgba(9, 22, 41, 0.7), rgba(10, 10, 10, 0.95));
+  }
+
+  .border-gold-fade {
+    border-image: linear-gradient(to right, transparent, #c9a84c, transparent) 1;
+  }
+}
