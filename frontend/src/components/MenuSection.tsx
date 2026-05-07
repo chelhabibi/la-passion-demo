@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { getSeasonMenuLabel, getCurrentSeason } from "@/lib/season";
+import STATIC_MENU from "@/data/menu.json";
 
 interface MenuItem {
   id: number;
@@ -331,27 +332,15 @@ function SkeletonCard() {
   );
 }
 
-const BACKEND = process.env.NEXT_PUBLIC_API_URL || "https://backend-production-dc32.up.railway.app";
-
-export default function MenuSection({ preview = false, initialItems }: { preview?: boolean; initialItems?: MenuItem[] }) {
+export default function MenuSection({ preview = false }: { preview?: boolean }) {
   const t = useTranslations("menu");
   const locale = useLocale();
-  const [items, setItems] = useState<MenuItem[]>(initialItems ?? []);
+  const items = STATIC_MENU as MenuItem[];
   const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [loading, setLoading] = useState(!initialItems || initialItems.length === 0);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
   const seasonLabel = getSeasonMenuLabel(locale);
-
-  useEffect(() => {
-    if (initialItems && initialItems.length > 0) return;
-    fetch(`${BACKEND}/menu`)
-      .then((r) => r.json())
-      .then((data) => { setItems(data); setLoading(false); })
-      .catch(() => setLoading(false));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const filtered = activeCategory === "all" ? items : items.filter((i) => i.category === activeCategory);
   const displayed = preview ? filtered.slice(0, 6) : filtered;
@@ -386,12 +375,7 @@ export default function MenuSection({ preview = false, initialItems }: { preview
         </motion.div>
 
         {/* Content */}
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => <SkeletonCard key={i} />)}
-          </div>
-        ) : (
-          <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait">
             <motion.div key={activeCategory}>
               {/* === SET MENU SECTION === */}
               {(activeCategory === "all" || activeCategory === "combo") && (() => {
@@ -459,7 +443,6 @@ export default function MenuSection({ preview = false, initialItems }: { preview
               })()}
             </motion.div>
           </AnimatePresence>
-        )}
 
         {preview && (
           <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
