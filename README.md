@@ -4,8 +4,8 @@ Nhà hàng fine dining tại 24 Hàng Bè, Phố Cổ Hà Nội. Web app full-st
 
 ## Live Demo
 
-> **Frontend:** _(cập nhật sau khi deploy Railway)_
-> **API:** _(cập nhật sau khi deploy Railway)_
+> **Frontend:** https://frontend-production-01ff.up.railway.app
+> **API:** https://backend-production-dc32.up.railway.app
 
 ---
 
