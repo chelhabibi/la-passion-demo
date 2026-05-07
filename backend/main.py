@@ -7,7 +7,10 @@ import schemas
 from database import engine, get_db
 from config import settings
 
-models.Base.metadata.create_all(bind=engine)
+try:
+    models.Base.metadata.create_all(bind=engine)
+except Exception as e:
+    print(f"Warning: Could not create tables: {e}")
 
 app = FastAPI(title="La Passion API", version="1.0.0")
 
