@@ -19,6 +19,15 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
+const SPECIAL_OPTIONS = [
+  { id: "cake",      vi: "Viết tên lên bánh",  en: "Custom cake inscription" },
+  { id: "smoke",     vi: "Đĩa khói",            en: "Smoke plate effect" },
+  { id: "nameplate", vi: "Bảng tên",             en: "Name plate" },
+  { id: "balloon",   vi: "Bóng bay",             en: "Balloons" },
+  { id: "candle",    vi: "Nến",                  en: "Candles" },
+  { id: "flower",    vi: "Hoa tươi",             en: "Fresh flowers" },
+];
+
 function SuccessToast({ message, onClose }: { message: string; onClose: () => void }) {
   return (
     <motion.div
@@ -50,6 +59,13 @@ export default function ReservationForm() {
   const locale = useLocale();
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
+
+  const toggleExtra = (id: string) => {
+    setSelectedExtras(prev =>
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+    );
+  };
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -63,10 +79,19 @@ export default function ReservationForm() {
   const onSubmit = async (data: FormData) => {
     setSubmitError("");
     try {
+      const extrasLabels = selectedExtras.map(id => {
+        const opt = SPECIAL_OPTIONS.find(o => o.id === id);
+        return opt ? (locale === "vi" ? opt.vi : opt.en) : id;
+      });
+      const notesWithExtras = [
+        extrasLabels.length ? `[${locale === "vi" ? "Yêu cầu đặc biệt" : "Special additions"}: ${extrasLabels.join(", ")}]` : "",
+        data.notes || "",
+      ].filter(Boolean).join(" | ");
+
       const res = await fetch(`${apiUrl}/reservations`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, notes: notesWithExtras }),
       });
       if (!res.ok) throw new Error();
       reset();
@@ -210,6 +235,42 @@ export default function ReservationForm() {
             {submitError && (
               <p className="text-burgundy-light text-xs">{submitError}</p>
             )}
+
+            {/* Special additions */}
+            <div>
+              <label className="section-label text-[9px] block mb-4">
+                {locale === "vi" ? "Trang Trí Đặc Biệt (tuỳ chọn)" : "Special Additions (optional)"}
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {SPECIAL_OPTIONS.map((opt) => {
+                  const checked = selectedExtras.includes(opt.id);
+                  return (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      onClick={() => toggleExtra(opt.id)}
+                      className="flex items-center gap-2 px-3 py-2.5 border text-left transition-all duration-300 text-[11px] font-light tracking-wide"
+                      style={{
+                        borderColor: checked ? "rgba(201,168,76,0.6)" : "rgba(255,255,255,0.1)",
+                        background: checked ? "rgba(201,168,76,0.08)" : "transparent",
+                        color: checked ? "#D4AF6A" : "rgba(255,255,255,0.45)",
+                      }}
+                    >
+                      <span
+                        className="w-3.5 h-3.5 border flex items-center justify-center flex-shrink-0 transition-all duration-200"
+                        style={{
+                          borderColor: checked ? "#C9A84C" : "rgba(255,255,255,0.2)",
+                          background: checked ? "rgba(201,168,76,0.15)" : "transparent",
+                        }}
+                      >
+                        {checked && <span className="text-gold text-[9px]">✓</span>}
+                      </span>
+                      {locale === "vi" ? opt.vi : opt.en}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
             <button
               type="submit"

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, Date, Time, Decimal, Boolean, TIMESTAMP
+from sqlalchemy import Column, Integer, String, Text, Date, Time, Numeric, Boolean, TIMESTAMP
 from sqlalchemy.sql import func
 from database import Base
 
@@ -11,7 +11,7 @@ class MenuItem(Base):
     name_en = Column(String(200), nullable=False)
     description_vi = Column(Text)
     description_en = Column(Text)
-    price = Column(Decimal(10, 2), nullable=False)
+    price = Column(Numeric(10, 2), nullable=False)
     category = Column(String(50), nullable=False)  # starter / main / dessert / drink
     image_url = Column(Text)
     is_available = Column(Boolean, default=True)

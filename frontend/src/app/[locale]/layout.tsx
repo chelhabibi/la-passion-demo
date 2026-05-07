@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import ChatWidget from "@/components/ChatWidget";
 
 const locales = ["vi", "en"];
 
@@ -22,6 +23,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       {children}
+      <ChatWidget />
     </NextIntlClientProvider>
   );
 }

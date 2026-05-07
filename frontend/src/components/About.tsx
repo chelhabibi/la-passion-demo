@@ -1,28 +1,16 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-
-function FadeIn({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.9, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import Link from "next/link";
 
 export default function About() {
   const t = useTranslations("about");
+  const locale = useLocale();
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const stats = [
     { number: t("stat1_number"), label: t("stat1_label") },
@@ -31,91 +19,88 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="bg-navy py-32 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* Text content */}
-          <div>
-            <FadeIn>
-              <p className="section-label mb-6">{t("section_label")}</p>
-            </FadeIn>
+    <section id="about" className="bg-black">
+      <div className="grid lg:grid-cols-2 min-h-[600px]">
 
-            <FadeIn delay={0.1}>
-              <h2 className="section-title mb-8">{t("title")}</h2>
-            </FadeIn>
+        {/* Image */}
+        <div className="relative overflow-hidden min-h-[400px] lg:min-h-0">
+          <Image
+            src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=900&q=80"
+            alt="La Passion interior"
+            fill
+            className="object-cover"
+            style={{ filter: "brightness(0.6) contrast(1.1)" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        </div>
 
-            <FadeIn delay={0.2}>
-              <div className="w-16 h-px bg-gold/40 mb-8" />
-            </FadeIn>
+        {/* Text */}
+        <div ref={ref} className="bg-black flex items-center px-10 lg:px-20 py-20">
+          <div className="max-w-lg">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="section-label mb-5"
+            >
+              {t("section_label")}
+            </motion.p>
 
-            <FadeIn delay={0.3}>
-              <p className="text-white/60 text-sm leading-relaxed font-light mb-6">{t("body1")}</p>
-              <p className="text-white/60 text-sm leading-relaxed font-light mb-12">{t("body2")}</p>
-            </FadeIn>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-serif text-3xl md:text-4xl text-white font-light leading-snug mb-6"
+            >
+              {t("title")}
+            </motion.h2>
 
-            {/* Philosophy + Ingredients */}
-            <div className="grid sm:grid-cols-2 gap-8">
-              <FadeIn delay={0.4}>
-                <div className="border-l border-gold/30 pl-6">
-                  <p className="section-label mb-3">{t("philosophy_label")}</p>
-                  <p className="text-white/50 text-xs leading-relaxed font-light">{t("philosophy")}</p>
-                </div>
-              </FadeIn>
-              <FadeIn delay={0.5}>
-                <div className="border-l border-burgundy/40 pl-6">
-                  <p className="section-label mb-3" style={{ color: "#A82038" }}>
-                    {t("ingredient_label")}
-                  </p>
-                  <p className="text-white/50 text-xs leading-relaxed font-light italic">
-                    {t("ingredient")}
-                  </p>
-                </div>
-              </FadeIn>
-            </div>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={inView ? { scaleX: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className="w-12 h-px bg-gold/40 origin-left mb-7"
+            />
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-white/55 text-sm font-light leading-relaxed mb-8"
+            >
+              {t("body1")}
+            </motion.p>
 
             {/* Stats */}
-            <FadeIn delay={0.6}>
-              <div className="flex gap-12 mt-16 pt-10 border-t border-white/5">
-                {stats.map((s) => (
-                  <div key={s.label}>
-                    <p className="font-serif text-3xl text-gold font-light">{s.number}</p>
-                    <p className="text-white/40 text-[10px] tracking-widest uppercase mt-1">
-                      {s.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="grid grid-cols-3 gap-0 border-t border-white/8 pt-8 mb-10"
+            >
+              {stats.map((s) => (
+                <div key={s.label} className="text-center">
+                  <p className="font-serif text-2xl text-gold font-light mb-1">{s.number}</p>
+                  <p className="text-white/30 text-[9px] tracking-widest uppercase leading-tight">{s.label}</p>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.65 }}
+            >
+              <Link
+                href={`/${locale}/about`}
+                className="btn-ghost text-[10px]"
+              >
+                <span>{locale === "vi" ? "Khám Phá Câu Chuyện Của Chúng Tôi" : "Discover Our Story"}</span>
+                <span>→</span>
+              </Link>
+            </motion.div>
           </div>
-
-          {/* Images */}
-          <FadeIn delay={0.2}>
-            <div className="relative">
-              {/* Main image */}
-              <div className="relative aspect-[3/4] overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&q=80"
-                  alt="La Passion interior"
-                  fill
-                  className="object-cover brightness-75 contrast-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent" />
-              </div>
-
-              {/* Floating accent image */}
-              <div className="absolute -bottom-8 -left-8 w-48 h-56 overflow-hidden border-4 border-navy hidden lg:block">
-                <Image
-                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80"
-                  alt="La Passion dining"
-                  fill
-                  className="object-cover brightness-75 contrast-110"
-                />
-              </div>
-
-              {/* Gold border accent */}
-              <div className="absolute -top-4 -right-4 w-32 h-32 border border-gold/30 hidden lg:block" />
-            </div>
-          </FadeIn>
         </div>
       </div>
     </section>

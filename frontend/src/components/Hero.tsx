@@ -60,9 +60,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-white leading-none mb-4"
+          className="font-serif text-5xl md:text-7xl lg:text-8xl font-light leading-none mb-4 text-gold-gradient"
         >
-          La <span className="italic text-gold-gradient">Passion</span>
+          La Passion
         </motion.h1>
 
         <motion.div
@@ -98,20 +98,36 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
+      {/* Scroll indicator — clickable */}
+      <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => {
+          const next = document.getElementById("about");
+          if (next) next.scrollIntoView({ behavior: "smooth" });
+          else window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+        }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
+                   cursor-pointer group focus:outline-none"
+        aria-label={t("scroll")}
       >
-        <span className="text-white/30 text-[9px] tracking-ultra uppercase">{t("scroll")}</span>
+        <motion.span
+          className="text-[9px] tracking-ultra uppercase transition-colors duration-300"
+          style={{ color: "rgba(255,255,255,0.3)" }}
+          whileHover={{ color: "rgba(212,175,106,0.9)" }}
+        >
+          {t("scroll")}
+        </motion.span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent"
+          className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent
+                     group-hover:from-gold/70 transition-all duration-300"
         />
-      </motion.div>
+      </motion.button>
     </section>
   );
 }

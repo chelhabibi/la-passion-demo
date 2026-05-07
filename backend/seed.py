@@ -152,6 +152,34 @@ MENU_ITEMS = [
         "category": "drink",
         "image_url": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=800&q=80",
     },
+    # Signature Combos / Set Menu
+    {
+        "name_vi": "La Passion Experience · 5 Món",
+        "name_en": "La Passion Experience · 5 Courses",
+        "description_vi": "Khai vị · Súp · Cá vược biển · Thăn bò Wagyu · Tráng miệng theo mùa. Bao gồm bánh mì Pháp và bơ Bretagne. Wine pairing tùy chọn.",
+        "description_en": "Amuse-bouche · Soup · Sea bass · Wagyu beef tenderloin · Seasonal dessert. Includes French bread and Bretagne butter. Optional wine pairing.",
+        "price": 1450000,
+        "category": "combo",
+        "image_url": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
+    },
+    {
+        "name_vi": "Chef's Table · 7 Món",
+        "name_en": "Chef's Table · 7 Courses",
+        "description_vi": "Menu đặc biệt do Chef Minh Tú trực tiếp thiết kế theo mùa — gan ngỗng · sò điệp · cá ngừ · nai rừng · pho mát · tráng miệng · petit fours. Giới hạn 4 bàn mỗi tối.",
+        "description_en": "Exclusive seasonal menu personally designed by Chef Minh Tú — foie gras · scallop · tuna · venison · cheese · dessert · petit fours. Limited to 4 tables per evening.",
+        "price": 2200000,
+        "category": "combo",
+        "image_url": "https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&q=80",
+    },
+    {
+        "name_vi": "Déjeuner · Trưa 3 Món",
+        "name_en": "Déjeuner · 3-Course Lunch",
+        "description_vi": "Khai vị chọn 1 · Món chính chọn 1 · Tráng miệng theo ngày. Phục vụ 11:30–14:30. Bao gồm cà phê hoặc trà thảo mộc.",
+        "description_en": "Starter of your choice · Main of your choice · Dessert of the day. Served 11:30–14:30. Includes coffee or herbal tea.",
+        "price": 750000,
+        "category": "combo",
+        "image_url": "https://images.unsplash.com/photo-1551218372-a8789b81b253?w=800&q=80",
+    },
 ]
 
 

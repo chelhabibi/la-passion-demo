@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import MenuSection from "@/components/MenuSection";
+import Chef from "@/components/Chef";
+import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
 import Link from "next/link";
 
@@ -11,16 +13,14 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <About />
+      <Chef />
       <MenuSection preview />
 
       {/* Reservation CTA banner */}
       <section className="relative bg-navy py-32 px-6 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-10"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1551218372-a8789b81b253?w=1200&q=80')",
-          }}
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1551218372-a8789b81b253?w=1200&q=80')" }}
         />
         <div className="relative max-w-3xl mx-auto text-center">
           <p className="section-label mb-6">Reservations</p>
@@ -39,6 +39,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Reviews />
       <Contact />
     </main>
   );

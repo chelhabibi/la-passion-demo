@@ -38,7 +38,8 @@
       "starter": "Starters",
       "main": "Mains",
       "dessert": "Desserts",
-      "drink": "Drinks"
+      "drink": "Drinks",
+      "combo": "Set Menu"
     },
     "available": "Available",
     "unavailable": "Unavailable"
