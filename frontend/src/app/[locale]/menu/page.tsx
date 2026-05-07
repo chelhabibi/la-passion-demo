@@ -1,8 +1,10 @@
 export const dynamic = "force-dynamic";
 
 import Navbar from "@/components/Navbar";
-import MenuSection from "@/components/MenuSection";
+import dynamic from "next/dynamic";
 import Contact from "@/components/Contact";
+
+const MenuSection = dynamic(() => import("@/components/MenuSection"), { ssr: false });
 
 export default function MenuPage() {
   return (

@@ -3,8 +3,10 @@ export const dynamic = "force-dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import MenuSection from "@/components/MenuSection";
+import dynamic from "next/dynamic";
 import Chef from "@/components/Chef";
+
+const MenuSection = dynamic(() => import("@/components/MenuSection"), { ssr: false });
 import Reviews from "@/components/Reviews";
 import Contact from "@/components/Contact";
 import Link from "next/link";
