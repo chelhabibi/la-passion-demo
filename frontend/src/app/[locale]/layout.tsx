@@ -3,6 +3,8 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ChatWidget from "@/components/ChatWidget";
 
+export const dynamic = "force-dynamic";
+
 const locales = ["vi", "en"];
 
 export function generateStaticParams() {
