@@ -348,7 +348,7 @@ export default function MenuSection({ preview = false }: { preview?: boolean }) 
       .then((r) => r.json())
       .then((data) => { setItems(data); setLoading(false); })
       .catch(() => setLoading(false));
-  }, [apiUrl]);
+  }, []);
 
   const filtered = activeCategory === "all" ? items : items.filter((i) => i.category === activeCategory);
   const displayed = preview ? filtered.slice(0, 6) : filtered;
