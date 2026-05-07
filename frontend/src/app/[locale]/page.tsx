@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import dynamic from "next/dynamic";
 import Chef from "@/components/Chef";
+import Ticker from "@/components/Ticker";
 
 const MenuSection = dynamic(() => import("@/components/MenuSection"), { ssr: false });
 import Reviews from "@/components/Reviews";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Hero />
       <About />
       <Chef />
+      <Ticker />
       <MenuSection preview />
 
       {/* Reservation CTA banner */}
