@@ -343,12 +343,11 @@ export default function MenuSection({ preview = false }: { preview?: boolean }) 
   const seasonLabel = getSeasonMenuLabel(locale);
 
   const filtered = activeCategory === "all" ? items : items.filter((i) => i.category === activeCategory);
-  const displayed = preview ? filtered.slice(0, 6) : filtered;
 
   return (
     <section id="menu" className="bg-black py-32 px-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header — with real season name */}
+        {/* Header */}
         <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }} className="text-center mb-16">
           <p className="section-label mb-4">{seasonLabel}</p>
@@ -357,101 +356,108 @@ export default function MenuSection({ preview = false }: { preview?: boolean }) 
           <p className="text-white/40 text-sm font-light tracking-wide max-w-lg mx-auto">{t("subtitle")}</p>
         </motion.div>
 
-        {/* Category filter */}
-        <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }} className="flex flex-wrap justify-center gap-2 mb-14">
-          {CATEGORIES.map((cat) => {
-            const isCombo = cat === "combo";
-            const isActive = activeCategory === cat;
-            return (
-              <button key={cat} onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 text-[10px] tracking-widest uppercase font-sans border transition-all duration-300 ${
-                  isActive && !isCombo ? "bg-burgundy border-burgundy text-white" : ""
-                } ${isCombo ? (isActive ? "combo-tab-active text-gold" : "combo-tab-inactive") : (!isActive ? "border-white/10 text-white/40 hover:border-gold/40 hover:text-gold" : "")}`}>
-                {t(`categories.${cat}`)}
-              </button>
-            );
-          })}
-        </motion.div>
-
-        {/* Content */}
-        <AnimatePresence mode="wait">
-            <motion.div key={activeCategory}>
-              {/* === SET MENU SECTION === */}
-              {(activeCategory === "all" || activeCategory === "combo") && (() => {
-                const combos = displayed.filter(i => i.category === "combo");
-                if (!combos.length) return null;
-                const firstId = Math.min(...combos.map(c => c.id));
-                return (
-                  <div className="mb-16">
-                    <div className="flex items-center gap-4 mb-8">
-                      <div className="w-px h-8 bg-gold/40" />
-                      <p className="section-label text-gold">Signature Set Menu</p>
-                      <div className="flex-1 h-px bg-gradient-to-r from-gold/20 to-transparent" />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {combos.map(item => (
-                        <ComboCard key={item.id} item={item} locale={locale} isFirst={item.id === firstId} />
-                      ))}
-                    </div>
-                    {activeCategory === "all" && <div className="border-b border-white/5 mt-16 mb-2" />}
-                  </div>
-                );
-              })()}
-
-              {/* === À LA CARTE — infinite scroll for "all", grid for filtered === */}
-              {activeCategory !== "combo" && (() => {
-                const regular = displayed.filter(i => i.category !== "combo" && i.category !== "drink");
-                const drinks = displayed.filter(i => i.category === "drink");
-
-                if (!regular.length && !drinks.length) return null;
-
-                return (
-                  <>
-                    {activeCategory === "all" && regular.length > 0 && (
-                      <>
-                        <div className="flex items-center gap-4 mb-8">
-                          <div className="w-px h-8 bg-white/20" />
-                          <p className="section-label">À La Carte</p>
-                          <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
-                        </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                          {regular.map(item => <MenuCard key={item.id} item={item} locale={locale} />)}
-                        </div>
-                        {drinks.length > 0 && (
-                          <>
-                            <div className="flex items-center gap-4 mb-8 mt-4">
-                              <div className="w-px h-8 bg-white/20" />
-                              <p className="section-label">{locale === "vi" ? "Đồ Uống" : "Drinks"}</p>
-                              <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                              {drinks.map(item => <MenuCard key={item.id} item={item} locale={locale} />)}
-                            </div>
-                          </>
-                        )}
-                      </>
-                    )}
-
-                    {activeCategory !== "all" && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {[...regular, ...drinks].map(item => <MenuCard key={item.id} item={item} locale={locale} />)}
-                      </div>
-                    )}
-                  </>
-                );
-              })()}
-            </motion.div>
-          </AnimatePresence>
-
-        {preview && (
-          <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.4 }} className="text-center mt-16">
-            <Link href={`/${locale}/menu`} className="btn-primary">
-              <span>{locale === "vi" ? "Xem Toàn Bộ Thực Đơn" : "View Full Menu"}</span>
-              <span>→</span>
-            </Link>
+        {/* ── PREVIEW MODE: 1 row (3 items) + CTA ── */}
+        {preview ? (
+          <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.8, delay: 0.2 }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {items.filter(i => i.category !== "combo").slice(0, 3).map(item => (
+                <MenuCard key={item.id} item={item} locale={locale} />
+              ))}
+            </div>
+            <div className="text-center">
+              <Link href={`/${locale}/menu`} className="btn-primary inline-flex mx-auto">
+                <span>{locale === "vi" ? "Xem Toàn Bộ Thực Đơn" : "View Full Menu"}</span>
+                <span>→</span>
+              </Link>
+            </div>
           </motion.div>
+        ) : (
+          /* ── FULL MENU MODE ── */
+          <>
+            {/* Category filter */}
+            <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }} className="flex flex-wrap justify-center gap-2 mb-14">
+              {CATEGORIES.map((cat) => {
+                const isCombo = cat === "combo";
+                const isActive = activeCategory === cat;
+                return (
+                  <button key={cat} onClick={() => setActiveCategory(cat)}
+                    className={`px-5 py-2 text-[10px] tracking-widest uppercase font-sans border transition-all duration-300 ${
+                      isActive && !isCombo ? "bg-burgundy border-burgundy text-white" : ""
+                    } ${isCombo ? (isActive ? "combo-tab-active text-gold" : "combo-tab-inactive") : (!isActive ? "border-white/10 text-white/40 hover:border-gold/40 hover:text-gold" : "")}`}>
+                    {t(`categories.${cat}`)}
+                  </button>
+                );
+              })}
+            </motion.div>
+
+            {/* Content */}
+            <AnimatePresence mode="wait">
+              <motion.div key={activeCategory}>
+                {/* SET MENU section */}
+                {(activeCategory === "all" || activeCategory === "combo") && (() => {
+                  const combos = filtered.filter(i => i.category === "combo");
+                  if (!combos.length) return null;
+                  const firstId = Math.min(...combos.map(c => c.id));
+                  return (
+                    <div className="mb-16">
+                      <div className="flex items-center gap-4 mb-8">
+                        <div className="w-px h-8 bg-gold/40" />
+                        <p className="section-label text-gold">Signature Set Menu</p>
+                        <div className="flex-1 h-px bg-gradient-to-r from-gold/20 to-transparent" />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {combos.map(item => (
+                          <ComboCard key={item.id} item={item} locale={locale} isFirst={item.id === firstId} />
+                        ))}
+                      </div>
+                      {activeCategory === "all" && <div className="border-b border-white/5 mt-16 mb-2" />}
+                    </div>
+                  );
+                })()}
+
+                {/* À LA CARTE section */}
+                {activeCategory !== "combo" && (() => {
+                  const regular = filtered.filter(i => i.category !== "combo" && i.category !== "drink");
+                  const drinks = filtered.filter(i => i.category === "drink");
+                  if (!regular.length && !drinks.length) return null;
+                  return (
+                    <>
+                      {activeCategory === "all" && regular.length > 0 && (
+                        <>
+                          <div className="flex items-center gap-4 mb-8">
+                            <div className="w-px h-8 bg-white/20" />
+                            <p className="section-label">À La Carte</p>
+                            <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                            {regular.map(item => <MenuCard key={item.id} item={item} locale={locale} />)}
+                          </div>
+                          {drinks.length > 0 && (
+                            <>
+                              <div className="flex items-center gap-4 mb-8 mt-4">
+                                <div className="w-px h-8 bg-white/20" />
+                                <p className="section-label">{locale === "vi" ? "Đồ Uống" : "Drinks"}</p>
+                                <div className="flex-1 h-px bg-gradient-to-r from-white/10 to-transparent" />
+                              </div>
+                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {drinks.map(item => <MenuCard key={item.id} item={item} locale={locale} />)}
+                              </div>
+                            </>
+                          )}
+                        </>
+                      )}
+                      {activeCategory !== "all" && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {[...regular, ...drinks].map(item => <MenuCard key={item.id} item={item} locale={locale} />)}
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
+              </motion.div>
+            </AnimatePresence>
+          </>
         )}
       </div>
     </section>

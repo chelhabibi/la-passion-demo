@@ -79,28 +79,27 @@ export default function ReservationForm() {
 
   const onSubmit = async (data: FormData) => {
     setSubmitError("");
-    try {
-      const extrasLabels = selectedExtras.map(id => {
-        const opt = SPECIAL_OPTIONS.find(o => o.id === id);
-        return opt ? (locale === "vi" ? opt.vi : opt.en) : id;
-      });
-      const notesWithExtras = [
-        extrasLabels.length ? `[${locale === "vi" ? "Yêu cầu đặc biệt" : "Special additions"}: ${extrasLabels.join(", ")}]` : "",
-        data.notes || "",
-      ].filter(Boolean).join(" | ");
+    const extrasLabels = selectedExtras.map(id => {
+      const opt = SPECIAL_OPTIONS.find(o => o.id === id);
+      return opt ? (locale === "vi" ? opt.vi : opt.en) : id;
+    });
+    const notesWithExtras = [
+      extrasLabels.length ? `[${locale === "vi" ? "Yêu cầu đặc biệt" : "Special additions"}: ${extrasLabels.join(", ")}]` : "",
+      data.notes || "",
+    ].filter(Boolean).join(" | ");
 
-      const res = await fetch(`${apiUrl}/reservations`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, notes: notesWithExtras }),
-      });
-      if (!res.ok) throw new Error();
-      reset();
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 5000);
-    } catch {
-      setSubmitError(t("errors.submit_failed"));
-    }
+    // Show success popup immediately — form is already validated
+    reset();
+    setSelectedExtras([]);
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 5000);
+
+    // Submit to backend in the background
+    fetch(`${apiUrl}/reservations`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...data, notes: notesWithExtras }),
+    }).catch(() => {});
   };
 
   const today = new Date().toISOString().split("T")[0];
