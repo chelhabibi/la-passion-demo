@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import Navbar from "@/components/Navbar";
 import dynamic from "next/dynamic";
 import Contact from "@/components/Contact";
