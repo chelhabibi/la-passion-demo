@@ -23,7 +23,7 @@ export default function HomePage() {
       {/* Reservation CTA banner */}
       <section className="relative bg-navy py-32 px-6 overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-10"
+          className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{ backgroundImage: "url('https://images.unsplash.com/photo-1550966871-3ed3cfd1b8a9?w=1200&q=80')" }}
         />
         <div className="relative max-w-3xl mx-auto text-center">
