@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { getSeasonMenuLabel, getCurrentSeason } from "@/lib/season";
 import STATIC_MENU from "@/data/menu.json";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://backend-production-dc32.up.railway.app";
 
 interface MenuItem {
   id: number;
@@ -335,10 +337,17 @@ function SkeletonCard() {
 export default function MenuSection({ preview = false }: { preview?: boolean }) {
   const t = useTranslations("menu");
   const locale = useLocale();
-  const items = STATIC_MENU as MenuItem[];
+  const [items, setItems] = useState<MenuItem[]>(STATIC_MENU as MenuItem[]);
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    fetch(`${API_URL}/menu`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (Array.isArray(data) && data.length > 0) setItems(data); })
+      .catch(() => {});
+  }, []);
 
   const seasonLabel = getSeasonMenuLabel(locale);
 
