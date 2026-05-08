@@ -24,9 +24,12 @@ Nhà hàng fine dining tại 24 Hàng Bè, Phố Cổ Hà Nội. Web app full-st
 ## Features
 
 - Giới thiệu nhà hàng với triết lý ẩm thực Pháp-Việt
-- Thực đơn theo mùa (Seasonal Menu) với 16 món, 4 danh mục
+- Thực đơn theo mùa (Seasonal Menu) với 19 món, 5 danh mục + Set Menu
 - Đặt bàn online — lưu vào PostgreSQL, success popup bottom-right
+- **Kiểm tra giờ trống real-time** — hiển thị số bàn còn trống khi chọn ngày/giờ
+- **Admin dashboard** (`/admin`) — xem và quản lý toàn bộ đặt bàn, đổi trạng thái
 - Chuyển đổi ngôn ngữ Tiếng Việt / English
+- Ticker marquee — giải thưởng + tên món đặc sắc chạy ngang
 - Parallax hero, fade-in animations, hover interactions
 - Responsive design — mobile first
 
@@ -104,3 +107,19 @@ npm run dev
 | GET | `/menu` | Lấy toàn bộ menu |
 | GET | `/menu/{category}` | Lấy menu theo danh mục |
 | POST | `/reservations` | Tạo đặt bàn mới |
+| GET | `/availability?date=&time=` | Kiểm tra số bàn còn trống |
+| GET | `/admin/reservations` | Lấy toàn bộ đặt bàn (admin) |
+| PATCH | `/admin/reservations/{id}` | Cập nhật trạng thái đặt bàn |
+
+---
+
+## Admin Dashboard
+
+Truy cập tại `/admin` (ví dụ: `https://frontend.up.railway.app/vi/admin`)
+
+Mật khẩu mặc định: `lapassion2024`
+
+Tính năng:
+- Xem toàn bộ danh sách đặt bàn từ database
+- Thống kê: tổng / chờ xác nhận / đã xác nhận / đã huỷ
+- Đổi trạng thái từng đặt bàn: **Xác nhận / Huỷ / Reset**
