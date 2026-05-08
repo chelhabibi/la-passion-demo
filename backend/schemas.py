@@ -29,6 +29,10 @@ class ReservationCreate(BaseModel):
     notes: Optional[str] = None
 
 
+class ReservationStatusUpdate(BaseModel):
+    status: str
+
+
 class ReservationOut(BaseModel):
     id: int
     name: str

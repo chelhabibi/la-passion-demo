@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -61,6 +61,8 @@ export default function ReservationForm() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
+  const [availability, setAvailability] = useState<{ available: boolean; remaining: number } | null>(null);
+  const [checkingAvail, setCheckingAvail] = useState(false);
 
   const toggleExtra = (id: string) => {
     setSelectedExtras(prev =>
@@ -74,8 +76,25 @@ export default function ReservationForm() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
+
+  const watchedDate = watch("date");
+  const watchedTime = watch("time");
+
+  useEffect(() => {
+    if (!watchedDate || !watchedTime) { setAvailability(null); return; }
+    setCheckingAvail(true);
+    const timer = setTimeout(() => {
+      fetch(`${apiUrl}/availability?date=${watchedDate}&time=${watchedTime}:00`)
+        .then(r => r.ok ? r.json() : null)
+        .then(data => { if (data) setAvailability(data); })
+        .catch(() => {})
+        .finally(() => setCheckingAvail(false));
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [watchedDate, watchedTime, apiUrl]);
 
   const onSubmit = async (data: FormData) => {
     setSubmitError("");
@@ -218,6 +237,19 @@ export default function ReservationForm() {
                 </select>
                 {errors.time && (
                   <p className="text-burgundy-light text-[10px] mt-2">{t("errors.time_required")}</p>
+                )}
+                {/* Availability indicator */}
+                {checkingAvail && (
+                  <p className="text-white/30 text-[10px] mt-2 tracking-wide">
+                    {locale === "vi" ? "Đang kiểm tra..." : "Checking availability..."}
+                  </p>
+                )}
+                {!checkingAvail && availability && (
+                  <p className={`text-[10px] mt-2 tracking-wide ${availability.available ? "text-green-400" : "text-red-400"}`}>
+                    {availability.available
+                      ? (locale === "vi" ? `Còn ${availability.remaining} bàn trống` : `${availability.remaining} tables available`)
+                      : (locale === "vi" ? "Đã kín khung giờ này" : "This time slot is fully booked")}
+                  </p>
                 )}
               </div>
             </div>
