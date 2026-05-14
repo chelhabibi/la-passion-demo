@@ -1,6 +1,18 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import ReservationForm from "@/components/ReservationForm";
 import Contact from "@/components/Contact";
+
+export const metadata: Metadata = {
+  title: "Đặt Bàn",
+  description:
+    "Đặt bàn online tại La Passion — chọn ngày giờ, số khách và yêu cầu đặc biệt. Xác nhận tự động qua email. Nhà hàng fine dining hàng đầu Hà Nội.",
+  openGraph: {
+    title: "Đặt Bàn | La Passion",
+    description:
+      "Đặt bàn online tại La Passion — chọn ngày giờ, số khách và yêu cầu đặc biệt. Xác nhận tự động qua email.",
+  },
+};
 
 export default function ReservationPage() {
   return (

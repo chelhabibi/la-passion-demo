@@ -28,5 +28,7 @@ class Reservation(Base):
     time = Column(Time, nullable=False)
     guests = Column(Integer, nullable=False)
     notes = Column(Text)
+    seat_preference = Column(String(20), nullable=True)
     status = Column(String(20), default="pending")
+    confirmation_sent = Column(Boolean, default=False, nullable=False, server_default="false")
     created_at = Column(TIMESTAMP, server_default=func.now())

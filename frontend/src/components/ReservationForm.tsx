@@ -15,6 +15,7 @@ const schema = z.object({
   time: z.string().min(1),
   guests: z.coerce.number().min(1).max(20),
   notes: z.string().optional(),
+  seat_preference: z.string().optional(),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -61,6 +62,7 @@ export default function ReservationForm() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
+  const [seatPreference, setSeatPreference] = useState<string>("");
   const [availability, setAvailability] = useState<{ available: boolean; remaining: number } | null>(null);
   const [checkingAvail, setCheckingAvail] = useState(false);
 
@@ -110,6 +112,7 @@ export default function ReservationForm() {
     // Show success popup immediately — form is already validated
     reset();
     setSelectedExtras([]);
+    setSeatPreference("");
     setShowSuccess(true);
     setTimeout(() => setShowSuccess(false), 5000);
 
@@ -117,7 +120,7 @@ export default function ReservationForm() {
     fetch(`${apiUrl}/reservations`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, notes: notesWithExtras }),
+      body: JSON.stringify({ ...data, notes: notesWithExtras, seat_preference: seatPreference || undefined }),
     }).catch(() => {});
   };
 
@@ -267,6 +270,50 @@ export default function ReservationForm() {
             {submitError && (
               <p className="text-burgundy-light text-xs">{submitError}</p>
             )}
+
+            {/* Seat preference */}
+            <div>
+              <label className="section-label text-[9px] block mb-4">
+                {t("seat_preference.label")}{" "}
+                <span className="normal-case font-light tracking-normal text-white/30">
+                  {t("seat_preference.optional")}
+                </span>
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { value: "window",   icon: "🪟", labelKey: "seat_preference.window",   descKey: "seat_preference.window_desc" },
+                  { value: "private",  icon: "🚪", labelKey: "seat_preference.private",  descKey: "seat_preference.private_desc" },
+                  { value: "terrace",  icon: "🌿", labelKey: "seat_preference.terrace",  descKey: "seat_preference.terrace_desc" },
+                  { value: "standard", icon: "🍽️", labelKey: "seat_preference.standard", descKey: "seat_preference.standard_desc" },
+                ].map((opt) => {
+                  const selected = seatPreference === opt.value;
+                  return (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() => setSeatPreference(selected ? "" : opt.value)}
+                      className="flex flex-col items-center gap-2 px-3 py-4 border text-center transition-all duration-300"
+                      style={{
+                        borderColor: selected ? "rgba(201,168,76,0.6)" : "rgba(255,255,255,0.1)",
+                        background: selected ? "rgba(201,168,76,0.08)" : "transparent",
+                        color: selected ? "#D4AF6A" : "rgba(255,255,255,0.4)",
+                      }}
+                    >
+                      <span className="text-2xl leading-none">{opt.icon}</span>
+                      <span className="text-[11px] font-light tracking-wide">
+                        {t(opt.labelKey as Parameters<typeof t>[0])}
+                      </span>
+                      <span
+                        className="text-[9px] font-light tracking-wide"
+                        style={{ color: selected ? "rgba(212,175,106,0.7)" : "rgba(255,255,255,0.25)" }}
+                      >
+                        {t(opt.descKey as Parameters<typeof t>[0])}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
             {/* Special additions */}
             <div>

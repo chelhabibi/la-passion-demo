@@ -1,8 +1,20 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import dynamic from "next/dynamic";
 import Contact from "@/components/Contact";
 
 const MenuSection = dynamic(() => import("@/components/MenuSection"), { ssr: false });
+
+export const metadata: Metadata = {
+  title: "Thực Đơn Mùa",
+  description:
+    "Khám phá thực đơn fine dining Pháp-Việt theo mùa tại La Passion — khai vị, món chính, tráng miệng, đồ uống và set menu chọn lọc bởi đầu bếp.",
+  openGraph: {
+    title: "Thực Đơn Mùa | La Passion",
+    description:
+      "Khám phá thực đơn fine dining Pháp-Việt theo mùa tại La Passion — khai vị, món chính, tráng miệng, đồ uống và set menu chọn lọc bởi đầu bếp.",
+  },
+};
 
 export default function MenuPage() {
   return (

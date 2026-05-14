@@ -8,7 +8,7 @@
   },
   "hero": {
     "tagline": "Nghệ Thuật Ẩm Thực",
-    "subtitle": "Nơi văn hóa Pháp và hương vị Việt giao thoa giữa lòng phố cổ Hà Nội",
+    "subtitle": "Nơi kỹ thuật Pháp cổ điển và linh hồn ẩm thực Việt hội tụ giữa lòng phố cổ Hà Nội",
     "cta_reserve": "Đặt Bàn Ngay",
     "cta_menu": "Xem Thực Đơn",
     "scroll": "Khám Phá"
@@ -19,7 +19,7 @@
     "body1": "La Passion ra đời từ hành trình của Chef Minh Tú — từ những năm tháng học nghề tại các nhà bếp Paris, đến ngày trở về Hà Nội mang theo kỹ thuật Pháp cổ điển và trái tim thuần Việt.",
     "body2": "Tọa lạc tại số 24 Hàng Bè, trong ngôi nhà cổ hơn 80 năm tuổi, La Passion không chỉ là một nhà hàng — đó là một cuộc đối thoại giữa hai nền văn hóa, được kể lại qua từng đĩa thức ăn.",
     "philosophy_label": "Triết Lý",
-    "philosophy": "Chúng tôi tin rằng ẩm thực ngon nhất là khi nguyên liệu địa phương được tôn trọng hoàn toàn. Mỗi mùa, thực đơn được thay đổi để phản ánh những gì tươi ngon nhất từ Đà Lạt, Sa Pa và vùng biển miền Trung.",
+    "philosophy": "Triết lý của chúng tôi bắt đầu từ sự tôn trọng tuyệt đối dành cho nguyên liệu bản địa. Theo từng mùa, thực đơn được tái thiết kế để phản ánh trọn vẹn những gì tinh túy nhất từ cao nguyên Đà Lạt, núi rừng Sa Pa và vùng biển miền Trung.",
     "ingredient_label": "Nguyên Liệu",
     "ingredient": "Nấm rừng Mộc Châu. Sò điệp Đà Lạt. Bò Wagyu từ trang trại đối tác. Rau thơm hái mỗi sáng từ vườn riêng.",
     "stat1_number": "2015",
@@ -32,7 +32,7 @@
   "menu": {
     "section_label": "Thực Đơn Mùa Này",
     "title": "Seasonal Menu",
-    "subtitle": "Mỗi món được chế biến từ những nguyên liệu tươi ngon nhất của mùa",
+    "subtitle": "Mỗi món ăn là sự chắt lọc từ những nguyên liệu tinh tế nhất mà mùa này ban tặng",
     "categories": {
       "all": "Tất Cả",
       "starter": "Khai Vị",
@@ -46,8 +46,8 @@
   },
   "reservation": {
     "section_label": "Đặt Bàn",
-    "title": "Một Buổi Tối Đáng Nhớ",
-    "subtitle": "Hãy để chúng tôi chuẩn bị một trải nghiệm hoàn hảo cho bạn",
+    "title": "Dành Riêng Cho Quý Khách",
+    "subtitle": "Chúng tôi trân trọng được đón tiếp quý khách và chuẩn bị cho mỗi bữa tối một cách chu đáo nhất",
     "form": {
       "name": "Họ & Tên",
       "name_placeholder": "Nguyễn Văn A",
@@ -66,7 +66,7 @@
     },
     "success": {
       "title": "Đặt Bàn Thành Công!",
-      "message": "Chúng tôi sẽ liên hệ xác nhận trong vòng 2 giờ."
+      "message": "Chúng tôi sẽ liên hệ xác nhận với quý khách trong vòng 2 giờ. Trân trọng cảm ơn."
     },
     "errors": {
       "name_required": "Vui lòng nhập họ tên",
@@ -76,6 +76,18 @@
       "time_required": "Vui lòng chọn giờ",
       "guests_required": "Vui lòng nhập số khách",
       "submit_failed": "Có lỗi xảy ra. Vui lòng thử lại."
+    },
+    "seat_preference": {
+      "label": "Vị Trí Ngồi",
+      "optional": "(tuỳ chọn)",
+      "window": "Cạnh Cửa Sổ",
+      "window_desc": "Nhìn ra phố cổ",
+      "private": "Phòng Riêng",
+      "private_desc": "Dành cho tiệc nhỏ",
+      "terrace": "Sân Thượng",
+      "terrace_desc": "Không gian ngoài trời",
+      "standard": "Khu Vực Chính",
+      "standard_desc": "Không gian chính"
     }
   },
   "contact": {
@@ -92,6 +104,6 @@
   },
   "footer": {
     "tagline": "Nghệ thuật ẩm thực giữa lòng phố cổ",
-    "rights": "© 2024 La Passion. All rights reserved."
+    "rights": "© 2025 La Passion. All rights reserved."
   }
 }
