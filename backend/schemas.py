@@ -4,6 +4,11 @@ from decimal import Decimal
 from typing import Optional, Literal
 
 
+SeatPreference = Literal["window", "private", "terrace", "standard"]
+ReservationStatus = Literal["pending", "confirmed", "cancelled", "completed"]
+MenuCategory = Literal["starter", "main", "dessert", "drink", "combo"]
+
+
 class MenuItemOut(BaseModel):
     id: int
     name_vi: str
@@ -11,7 +16,7 @@ class MenuItemOut(BaseModel):
     description_vi: Optional[str]
     description_en: Optional[str]
     price: Decimal
-    category: str
+    category: MenuCategory
     image_url: Optional[str]
     is_available: bool
 
@@ -25,7 +30,7 @@ class MenuItemCreate(BaseModel):
     description_vi: Optional[str] = None
     description_en: Optional[str] = None
     price: Decimal
-    category: str
+    category: MenuCategory
     image_url: Optional[str] = None
     is_available: bool = True
 
@@ -38,11 +43,11 @@ class ReservationCreate(BaseModel):
     time: time
     guests: int
     notes: Optional[str] = None
-    seat_preference: Optional[str] = None
+    seat_preference: Optional[SeatPreference] = None
 
 
 class ReservationStatusUpdate(BaseModel):
-    status: Literal["pending", "confirmed", "cancelled", "completed"]
+    status: ReservationStatus
 
 
 class ReservationOut(BaseModel):
@@ -54,8 +59,8 @@ class ReservationOut(BaseModel):
     time: time
     guests: int
     notes: Optional[str]
-    seat_preference: Optional[str] = None
-    status: str
+    seat_preference: Optional[SeatPreference] = None
+    status: ReservationStatus
     confirmation_sent: bool = False
     created_at: Optional[datetime]
 
