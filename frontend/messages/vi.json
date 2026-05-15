@@ -9,19 +9,19 @@
   "hero": {
     "tagline": "Nghệ Thuật Ẩm Thực",
     "subtitle": "Nơi kỹ thuật Pháp cổ điển và linh hồn ẩm thực Việt hội tụ giữa lòng phố cổ Hà Nội",
-    "cta_reserve": "Đặt Bàn Ngay",
+    "cta_reserve": "Giữ Bàn Tối Nay",
     "cta_menu": "Xem Thực Đơn",
-    "scroll": "Khám Phá"
+    "scroll": "Cuộn Xuống"
   },
   "about": {
     "section_label": "Câu Chuyện Của Chúng Tôi",
-    "title": "Một Tình Yêu Được Nấu Từ Hai Thế Giới",
-    "body1": "La Passion ra đời từ hành trình của Chef Minh Tú — từ những năm tháng học nghề tại các nhà bếp Paris, đến ngày trở về Hà Nội mang theo kỹ thuật Pháp cổ điển và trái tim thuần Việt.",
-    "body2": "Tọa lạc tại số 24 Hàng Bè, trong ngôi nhà cổ hơn 80 năm tuổi, La Passion không chỉ là một nhà hàng — đó là một cuộc đối thoại giữa hai nền văn hóa, được kể lại qua từng đĩa thức ăn.",
+    "title": "Hai Nền Văn Hoá, Một Bàn Ăn",
+    "body1": "La Passion bắt đầu từ hành trình của Chef Minh Tú — những năm tháng học nghề lặng lẽ trong các căn bếp Paris, rồi trở về Hà Nội cùng kỹ thuật Pháp cổ điển và một trái tim thuần Việt.",
+    "body2": "Toạ lạc tại số 24 Hàng Bè, trong ngôi biệt thự cổ hơn 80 năm tuổi, La Passion không đơn thuần là một nhà hàng. Đây là cuộc đối thoại giữa hai nền văn hoá, được kể chậm rãi qua mỗi đĩa thức ăn được đặt xuống bàn.",
     "philosophy_label": "Triết Lý",
     "philosophy": "Triết lý của chúng tôi bắt đầu từ sự tôn trọng tuyệt đối dành cho nguyên liệu bản địa. Theo từng mùa, thực đơn được tái thiết kế để phản ánh trọn vẹn những gì tinh túy nhất từ cao nguyên Đà Lạt, núi rừng Sa Pa và vùng biển miền Trung.",
     "ingredient_label": "Nguyên Liệu",
-    "ingredient": "Nấm rừng Mộc Châu. Sò điệp Đà Lạt. Bò Wagyu từ trang trại đối tác. Rau thơm hái mỗi sáng từ vườn riêng.",
+    "ingredient": "Nấm rừng Mộc Châu. Sò điệp tươi từ vùng biển miền Trung. Bò Wagyu từ trang trại đối tác. Rau thơm hái mỗi sáng từ khu vườn riêng của nhà hàng.",
     "stat1_number": "2015",
     "stat1_label": "Năm Thành Lập",
     "stat2_number": "12",
@@ -31,7 +31,7 @@
   },
   "menu": {
     "section_label": "Thực Đơn Mùa Này",
-    "title": "Seasonal Menu",
+    "title": "Thực Đơn Theo Mùa",
     "subtitle": "Mỗi món ăn là sự chắt lọc từ những nguyên liệu tinh tế nhất mà mùa này ban tặng",
     "categories": {
       "all": "Tất Cả",
@@ -65,17 +65,17 @@
       "submitting": "Đang xử lý..."
     },
     "success": {
-      "title": "Đặt Bàn Thành Công!",
-      "message": "Chúng tôi sẽ liên hệ xác nhận với quý khách trong vòng 2 giờ. Trân trọng cảm ơn."
+      "title": "Đã Ghi Nhận Đặt Bàn",
+      "message": "Chúng tôi sẽ liên hệ xác nhận với quý khách trong vòng 2 giờ. Trân trọng cảm ơn quý khách đã chọn La Passion."
     },
     "errors": {
-      "name_required": "Vui lòng nhập họ tên",
-      "email_invalid": "Email không hợp lệ",
-      "phone_required": "Vui lòng nhập số điện thoại",
-      "date_required": "Vui lòng chọn ngày",
-      "time_required": "Vui lòng chọn giờ",
-      "guests_required": "Vui lòng nhập số khách",
-      "submit_failed": "Có lỗi xảy ra. Vui lòng thử lại."
+      "name_required": "Quý khách vui lòng cho chúng tôi biết tên",
+      "email_invalid": "Email chưa đúng định dạng, mong quý khách kiểm tra lại",
+      "phone_required": "Quý khách vui lòng để lại số điện thoại liên hệ",
+      "date_required": "Quý khách vui lòng chọn ngày dùng bữa",
+      "time_required": "Quý khách vui lòng chọn khung giờ",
+      "guests_required": "Quý khách vui lòng cho biết số người dùng bữa",
+      "submit_failed": "Hệ thống đang gặp trục trặc. Mong quý khách thử lại trong giây lát."
     },
     "seat_preference": {
       "label": "Vị Trí Ngồi",
@@ -92,7 +92,7 @@
   },
   "contact": {
     "section_label": "Liên Hệ",
-    "title": "Tìm Chúng Tôi",
+    "title": "Ghé Thăm La Passion",
     "address": "24 Hàng Bè, Hoàn Kiếm, Hà Nội",
     "phone": "+84 24 3826 1234",
     "email": "hello@lapassion.vn",

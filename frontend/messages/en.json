@@ -9,19 +9,19 @@
   "hero": {
     "tagline": "The Art of Dining",
     "subtitle": "Where classical French technique and the soul of Vietnamese cuisine meet, in the heart of Hanoi's Old Quarter",
-    "cta_reserve": "Reserve a Table",
+    "cta_reserve": "Reserve Your Evening",
     "cta_menu": "View Menu",
-    "scroll": "Explore"
+    "scroll": "Scroll"
   },
   "about": {
     "section_label": "Our Story",
-    "title": "A Love Story Cooked From Two Worlds",
-    "body1": "La Passion was born from Chef Minh Tú's journey — years of apprenticeship in Parisian kitchens, returning to Hanoi carrying classical French technique and a purely Vietnamese heart.",
-    "body2": "Nestled at 24 Hàng Bè in an 80-year-old colonial house, La Passion is more than a restaurant — it is a dialogue between two cultures, told through each plate we serve.",
+    "title": "Two Cultures, One Table",
+    "body1": "La Passion began with Chef Minh Tú's journey — quiet years of apprenticeship in Parisian kitchens, then a return to Hanoi carrying classical French technique alongside a purely Vietnamese heart.",
+    "body2": "Set within an 80-year-old colonial house at 24 Hàng Bè, La Passion is more than a restaurant. It is an unhurried dialogue between two cultures, told through each plate placed before you.",
     "philosophy_label": "Philosophy",
     "philosophy": "Our philosophy begins with an unwavering respect for local provenance. Each season, our menu is thoughtfully reimagined to honour what is finest from the Dalat highlands, the mountains of Sa Pa, and the Central Coast.",
     "ingredient_label": "Ingredients",
-    "ingredient": "Moc Chau wild mushrooms. Dalat scallops. Wagyu from partner farms. Herbs harvested each morning from our private garden.",
+    "ingredient": "Wild mushrooms from Mộc Châu. Day-boat scallops from the Central Coast. Wagyu from trusted partner farms. Herbs gathered each morning from our private garden.",
     "stat1_number": "2015",
     "stat1_label": "Founded",
     "stat2_number": "12",
@@ -65,17 +65,17 @@
       "submitting": "Processing..."
     },
     "success": {
-      "title": "Reservation Confirmed!",
-      "message": "We will be in touch to confirm your reservation within 2 hours. Thank you for choosing La Passion."
+      "title": "Your Reservation Has Been Received",
+      "message": "We will be in touch within two hours to confirm the details. Thank you for choosing La Passion."
     },
     "errors": {
-      "name_required": "Please enter your name",
-      "email_invalid": "Invalid email address",
-      "phone_required": "Please enter your phone number",
-      "date_required": "Please select a date",
+      "name_required": "May we have your name, please",
+      "email_invalid": "This email doesn't seem quite right — please check again",
+      "phone_required": "Please leave us a contact number",
+      "date_required": "Please choose a date for your visit",
       "time_required": "Please select a time",
-      "guests_required": "Please enter number of guests",
-      "submit_failed": "Something went wrong. Please try again."
+      "guests_required": "Please let us know how many will be dining",
+      "submit_failed": "Something didn't go through. Please try again in a moment."
     },
     "seat_preference": {
       "label": "Seating Preference",
@@ -92,7 +92,7 @@
   },
   "contact": {
     "section_label": "Contact",
-    "title": "Find Us",
+    "title": "Visit La Passion",
     "address": "24 Hàng Bè, Hoàn Kiếm, Hanoi",
     "phone": "+84 24 3826 1234",
     "email": "hello@lapassion.vn",
